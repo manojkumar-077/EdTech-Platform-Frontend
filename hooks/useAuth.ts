@@ -9,8 +9,13 @@ export const useAuth = (allowedRoles: string[]) => {
 
   useEffect(() => {
     const role = getUserRole();
-    if (!role || !allowedRoles.includes(role)) {
+
+    if (!role) {
       logout();
+      return;
+    }
+
+    if (!allowedRoles.includes(role)) {
       router.push("/login");
     }
   }, []);
